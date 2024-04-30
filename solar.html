@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Solar System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery 3.6 CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <!-- Font Awesome 5 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- <link rel="stylesheet" href="/Users/sajjadmac/Desktop/Spring 2024/Web App Development/VS Code/ProPoint Project/Style3.css"> -->
+
+
+<!-- ALL CODE ON THIS PAGE WAS WRITTEN, REVIEWED, AND EDITED BY SAJJAD ALLOO :) -->
+
+
+<style>
+    /* Style for body of page  */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: black;
+	background-image: url(https://raw.githubusercontent.com/salloo1/Pro/main/Background2.jpg);
+	background-size: cover;
+	background-repeat: no-repeat; 
+	position: relative; 
+
+}
+/* Set styling for page header */
+.page-header {
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    text-align: center;
+    padding: 5px; 
+    background-color: black; 
+    border-radius: 5%;
+    z-index: 2; 
+}
+
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: black;
+    padding: 20px;
+    color: white;
+    }
+   
+
+/* Sets position and layout of buttons */
+ .button-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+/* Places Button 11 at the bottom right corner of page  */
+#btn_11 {
+  position: fixed;
+  width: 120px;
+  bottom: 20px;
+  right: 20px;
+}
+/* Sets styling for all buttons */
+.btn.btn-primary {
+  margin-bottom: 10px;
+  color: black; 
+  background-color: white; 
+  border: 2px #474F7A;
+  transition: all 0.3s;
+}
+/* Sets hover animation for all buttons */
+.btn.btn-primary:hover {
+  transform: translateY(-3px); 
+  background-color: #474F7A; 
+  color: white;
+}
+/* I am gonna give up commenting here because it is alot from here on out lol*/
+/* But essentially what I do here is set up all planets with trails and a bigger variation of them (shown on button click) */
+.orbit-center {
+    font-size: 6px;
+    width: 40em;
+    height: 40em;
+    position: relative;
+}
+img{
+    height: 100%;
+    width: 100%;
+}
+
+.sun {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 15em;
+    left: 15em;
+    width: 9em;
+    height: 9em;
+    border-radius: 50%;
+    box-shadow: 0 0 3em rgb(255, 128, 0);
+    animation: orbit 50s linear infinite;
+}
+/* PLANETS */
+.mercury,
+.venus,
+.earth,
+.moon,
+.mars,
+.jupiter,
+.saturn,
+.uranus,
+.neptune,
+.pluto {
+    position: absolute;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+    border-width: 0.1em 0.1em 0 0;
+    border-radius: 50%;
+}
+
+.mercury {
+    top: 12.5em;
+    left: 12.5em;
+    width: 15em;
+    height: 15em;
+    animation: orbit 68.7s linear infinite;
+}
+
+.venus {
+    top: 10em;
+    left: 10em;
+    width: 20em;
+    height: 20em;
+    animation: orbit 48.7s linear infinite;
+}
+
+.earth {
+    top: 6em;
+    left: 6em;
+    width: 28em;
+    height: 28em; 
+    animation: orbit 36.5s linear infinite;   
+}
+
+.moon {
+    top: 2em;
+    right: -1em;
+    width: 7em;
+    height: 7em; 
+    animation: orbit 2.7s linear infinite;
+}
+.mars {
+    top: 2em;
+    left: 2.5em;
+    width: 36em;
+    height: 36em; 
+    animation: orbit 26.5s linear infinite;
+}
+.jupiter {
+    top: -2em;
+    left: -2em;
+    width: 45em;
+    height: 45em; 
+    animation: orbit 21s linear infinite;
+}
+.saturn {
+    top: -7em;
+    left: -7em;
+    width: 55em;
+    height: 55em; 
+    animation: orbit 17s linear infinite;
+}
+.uranus {
+    top: -12em;
+    left: -12em;
+    width: 65em;
+    height: 65em; 
+    animation: orbit 19s linear infinite;
+}
+.neptune {
+    top: -17em;
+    left: -17em;
+    width: 75em;
+    height: 75em; 
+    animation: orbit 30s linear infinite;
+}
+.pluto {
+    top: -22em;
+    left: -22em;
+    width: 85em;
+    height: 85em; 
+    animation: orbit 18s linear infinite;
+}
+
+/* PLANETS::BEFORE */
+.mercury::before,
+.earth::before,
+.moon::before,
+.mars::before,
+.jupiter::before,
+.saturn::before,
+.uranus::before,
+.neptune::before,
+.pluto::before{
+    content: '';
+    position: absolute;
+    animation: orbit 30s linear infinite;
+}
+.venus::before{
+    content: '';
+    position: absolute;
+    animation: orbitVenus 30s linear infinite;  
+}
+
+.mercury::before {
+    top: 1.5em;
+    right: 0.8em;
+    width: 2em;
+    height: 2em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/mercury.svg");
+    background-size: cover;
+}
+
+.venus::before {
+    top: 2em;
+    right: 2em;
+    width: 2em;
+    height: 2em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/venus.svg");
+    background-size: cover;
+}
+.earth::before {
+    top: 3em;
+    right: 0em;
+    width: 5em;
+    height: 5em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/earth.svg");
+    background-size: cover;
+}
+
+.moon::before {
+    top: 0.8em;
+    right: 0.2em;
+    width: 1.2em;
+    height: 1.2em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/moon.png");
+    background-size: cover;
+}
+.mars::before {
+    top: 5em;
+    right: 3em;
+    width: 3em;
+    height: 3em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/mars.svg");
+    background-size: cover;
+}
+.jupiter::before {
+    top: 6em;
+    right: 1.5em;
+    width: 7em;
+    height: 7em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/jupiter.svg");
+    background-size: cover;
+}
+.saturn::before {
+    top: 5em;
+    right: 3.5em;
+    width: 8em;
+    height: 8em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/saturn.svg");
+    background-size: cover;
+}
+.uranus::before {
+    top: 9em;
+    right: 6.5em;
+    width: 4em;
+    height: 4em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/dcf6f7206a9a51e9a34e7b70c0f5f99f0bdba3a0/uranus.svg");
+    background-size: cover;
+}
+.neptune::before {
+    top: 10em;
+    right: 8em;
+    width: 4em;
+    height: 4em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/neptune.svg");
+    background-size: cover;
+}
+.pluto::before {
+    top: 11em;
+    right: 10em;
+    width: 4em;
+    height: 4em;
+    background-image: url("https://raw.githubusercontent.com/salloo1/Pro/main/pluto.svg");
+    background-size: cover;
+}
+
+/* BIG PLANETS */
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Ensure it's above the sidebar */
+}
+
+.mercury-big,
+.earth-big,
+.mars-big,
+.jupiter-big,
+.uranus-big,
+.neptune-big,
+.pluto-big {
+    top: 50%;
+    right: 50% ;
+    translate: (-50%, -50%);
+    width: 28em;
+    height: 28em;
+    display: none;
+    animation: orbit 36.5s linear infinite;
+}
+
+.venus-big{
+    top: 50%;
+    right: 50% ;
+    translate: (-50%, -50%);
+    width: 28em;
+    height: 28em;
+    display: none;
+    animation: orbitVenus 36.5s linear infinite;  
+}
+
+.saturn-big{
+    top: 50%;
+    right: 50% ;
+    translate: (-50%, -50%);
+    width: 40em;
+    height: 40em;
+    display: none;
+    animation: orbit 36.5s linear infinite; 
+}
+
+.moon-big {
+    top: 2em;
+    right: -1em;
+    width: 7em;
+    height: 7em; 
+    animation: orbit 12s linear infinite;
+}
+
+.meteorite1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px; 
+    z-index: 0; 
+    animation: shoot 12s linear infinite;
+	animation-delay: 0s;
+}
+.meteorite2 {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    width: 20px;
+    height: 20px; 
+    z-index: 0; 
+	opacity: 0;
+    animation: shoot 13s linear infinite;
+	animation-delay: 9s;
+	animation-fill-mode: forwards;
+}
+
+.meteorite3 {
+    position: fixed;
+    top: 20%;
+    left: 40%;
+    width: 20px;
+    height: 20px; 
+    z-index: 0; 
+	opacity: 0;
+    animation: shoot 15s linear infinite;
+	animation-delay: 15s;
+	animation-fill-mode: forwards;
+}
+
+/* METEORITE SHOOT ANIMATION */
+@keyframes shoot {
+  0% {
+    transform: translate(-100vw, -30vh);
+	opacity: 0;
+  }
+  30%{
+    opacity: 1;
+  }
+  100% {
+    transform: translate(50vw, 100vh);
+  }
+}
+
+/* ORBIT ANIMATION */
+@keyframes orbit {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes orbitVenus {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.justice{
+    color: white;
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    text-align: center;
+    padding: 5px; 
+    background-color: black; 
+    border-radius: 5%;
+    z-index: 2;  
+}
+
+</style>
+</head>
+<body>
+    <div class="page-header" id="page-header">
+        <h1>Click on the buttons to learn more!</h1>
+    </div> 
+    <div class="button-container">
+        <input type="button" class="btn btn-primary" id="btn_1" value="Mercury">  
+        <input type="button" class="btn btn-primary" id="btn_2" value="Venus">  
+        <input type="button" class="btn btn-primary" id="btn_3" value="Earth"> 
+        <input type="button" class="btn btn-primary" id="btn_4" value="Mars">  
+        <input type="button" class="btn btn-primary" id="btn_5" value="Jupiter"> 
+        <input type="button" class="btn btn-primary" id="btn_6" value="Saturn">  
+        <input type="button" class="btn btn-primary" id="btn_7" value="Uranus">  
+        <input type="button" class="btn btn-primary" id="btn_8" value="Neptune">  
+        <input type="button" class="btn btn-primary" id="btn_9" value="Pluto">  
+        <input type="button" class="btn btn-primary" id="btn_10" value="Solar System">  
+    </div>
+    <input type="button" class="btn btn-primary" id="btn_11" value="Go Back">  
+      
+  <div class="orbit-center" id="orbit-center">
+    <div class="sun" id="sun">
+        <img src="https://raw.githubusercontent.com/salloo1/Pro/main/sun.svg" alt="sun">
+      </div>
+      <div class="mercury"></div>
+      <div class="venus"></div>
+      <div class="earth" id="earth">
+        <div class="moon"></div>
+      </div>
+      <div class="mars"></div>
+      <div class="jupiter"></div>
+      <div class="saturn"></div>
+      <div class="uranus"></div>
+      <div class="neptune"></div>
+      <div class="pluto"></div>
+    </div>
+
+    <div class="meteorite1">
+        <img src="https://raw.githubusercontent.com/salloo1/Pro/main/meteorite.svg" alt="meteorite1" style="width: 20px; height: 20px;">
+</div>	
+<div class="meteorite2">
+    <img src="https://raw.githubusercontent.com/salloo1/Pro/main/meteorite.svg" alt="meteorite2" style="width: 20px; height: 20px;">
+</div>	
+<div class="meteorite3">
+    <img src="https://raw.githubusercontent.com/salloo1/Pro/main/meteorite.svg" alt="meteorite3" style="width: 30px; height: 30px;">
+</div>	
+
+    <div class="centered">
+        <div class="mercury-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/mercury.svg" alt="mercury">
+        </div>
+        <div class="venus-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/venus.svg" alt="venus">
+        </div>
+        <div class="earth-big" id="earth-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/earth.svg" alt="earth">
+          <div class="moon-big" id="moon-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/moon.png" alt="moon">
+          </div>
+        </div>
+        <div class="mars-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/mars.svg" alt="mars">
+        </div>
+        <div class="jupiter-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/jupiter.svg" alt="jupiter">
+        </div>
+        <div class="saturn-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/saturn.svg" alt="saturn">
+        </div>
+        <div class="uranus-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/dcf6f7206a9a51e9a34e7b70c0f5f99f0bdba3a0/uranus.svg" alt="uranus">
+        </div>
+        <div class="neptune-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/neptune.svg" alt="neptune">
+        </div>
+        <div class="pluto-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/pluto.svg" alt="pluto">
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h3 id="header">Planet Facts</h3>
+        <p class="sun-info" id = "sun-info">
+            <i class="fas fa-globe"></i> Mercury: 1st planet from the sun, average distance from sun is 36 million miles
+          </p>
+        <p class="mercury-info" id = "mercury-info">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/mercury.svg" alt="Mercury" style="width: 40px; height: 40px;">
+          <ul id="mercury-list">
+            <li>Mercury is the closest planet to the Sun.</li> <br>
+            <li>It has a diameter of about 4,880 kilometers.</li><br>
+            <li>Mercury is the smallest "planet" in our solar system</li><br>
+            <li>Mercury has an extremely thin atmosphere.</li><br>
+            <li>It experiences extreme temperature variations.</li><br>
+            <li>The surface is heavily cratered like the Moon.</li> 
+        </ul>
+        </p>
+        <p class="venus-info" id = "venus-info">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/venus.svg" alt="Venus" style="width: 40px; height: 40px;">
+          <ul id="venus-list">
+            <li>Venus is the second planet from the sun.</li> <br>
+            <li>It's often called Earth's sister planet due to similar size and composition.</li> <br>
+            <li>Venus has a thick atmosphere mainly of carbon dioxide, causing a runaway greenhouse effect.</li> <br>
+            <li>Surface temperatures can reach 900°F, hot enough to melt lead.</li> <br>
+            <li>It rotates in the opposite direction to most planets, called retrograde rotation.</li> <br>
+            <li>Venus has no moons or natural satellites.</li>
+        </ul>                 
+        </p>
+        <p class="earth-info" id = "earth-info">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/earth.svg" alt="Earth" style="width: 40px; height: 40px;">
+                <ul id="earth-list">
+                    <li>Earth is the third planet from the Sun.</li><br>
+                    <li>It has one natural satellite: the Moon.</li><br>
+                    <li>Earth's atmosphere is composed mainly of nitrogen and oxygen.</li><br>
+                    <li>About 71% of Earth's surface is covered by water.</li><br>
+                    <li>It is the only known planet to support life.</li><br>
+                    <li>Earth's magnetic field protects it from solar winds and cosmic rays.</li><br>
+                </ul>   
+        </p>
+        <p class="mars-info" id = "mars-info">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/mars.svg" alt="Mars" style="width: 40px; height: 40px;">
+          <ul id="mars-list">
+            <li>Mars is the fourth planet from the sun, also known as the "Red Planet."</li> <br>
+            <li>It has the largest volcano in the solar system, Olympus Mons.</li> <br>
+            <li>Mars has polar ice caps made of water and carbon dioxide.</li> <br>
+            <li>The planet has the longest valley in the solar system, Valles Marineris.</li> <br>
+            <li>It has a thin atmosphere primarily composed of carbon dioxide.</li> <br>
+            <li>Mars has two small moons, Phobos and Deimos.</li>
+        </ul>        
+        </p>
+        <p class="jupiter-info" id = "jupiter-info"> 
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/jupiter.svg" alt="Jupiter" style="width: 40px; height: 40px;">
+          <ul id="jupiter-list">
+            <li>Jupiter is the largest planet in the solar system.</li> <br>
+            <li>It has a giant red storm called the Great Red Spot.</li> <br>
+            <li>Jupiter's moon Ganymede is the largest moon in the solar system, is even larger than the planet Mercury.</li> <br>
+            <li>Its magnetic field is the strongest of all the planets.</li> <br>
+            <li>Jupiter's composition is mainly hydrogen and helium.</li> <br>
+            <li>It has a short day, completing a rotation in less than 10 hours.</li> <br>
+        </ul>        
+        </p>
+        <p class="saturn-info" id = "saturn-info">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/saturn.svg" alt="Saturn" style="width: 40px; height: 40px;">
+          <ul id="saturn-list">
+            <li>Saturn is the second-largest planet in our solar system.</li> <br>
+            <li>Saturn's rings are composed mostly of ice particles and dust.</li> <br>
+            <li>Saturn's rings are divided into seven main groups, each with thousands of smaller rings.</li> <br>
+            <li>Despite its large size, Saturn has the lowest density of all the planets in the solar system.</li> <br>
+            <li>It has a short day, completing a rotation in 10.7 hours.</li> <br>
+            <li>Saturn has the most moons in the solar system, with over 145 moons discovered.</li> <br>
+        </ul>        
+        </p>
+        <p class="uranus-info" id = "uranus-info">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/uranus.svg" alt="Uranus" style="width: 40px; height: 40px;">
+          <ul id="uranus-list">
+            <li>Uranus is the seventh planet from the sun.</li> <br>
+            <li>It has a blue-green color due to methane in its atmosphere.</li> <br>
+            <li>Uranus rotates on its side, making its axis almost parallel to its orbit.</li> <br>
+            <li>It has faint rings and a diverse system of moons.</li> <br>
+            <li>Uranus is an ice giant composed mostly of water, ammonia, and methane.</li> <br>
+            <li>It takes about 84 Earth years to orbit the sun.</li> <br>
+        </ul>        
+        </p>
+        <p class="neptune-info" id = "neptune-info">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/neptune.svg" alt="Neptune" style="width: 40px; height: 40px;">
+          <ul id="neptune-list">
+            <li>Neptune is the eighth and farthest planet from the sun.</li> <br>
+            <li>It has a deep blue color due to methane in its atmosphere.</li> <br>
+            <li>Neptune has the strongest winds in the solar system, reaching up to 1,500 mph.</li> <br>
+            <li>It has a system of faint rings and a complex moon system.</li> <br>
+            <li>Neptune is an ice giant with a composition similar to Uranus.</li> <br>
+            <li>It was discovered in 1846 through mathematical predictions before it was seen.</li> <br>
+        </ul>        
+        </p>
+        <p class="pluto-info" id = "pluto-info">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/pluto.svg" alt="Pluto" style="width: 40px; height: 40px;">
+        <ul id="pluto-list">
+            <li>Pluto is a dwarf planet in the Kuiper Belt.</li><br>
+            <li>It was classified as the ninth planet until reclassification in 2006.</li><br>
+            <li>Pluto is smaller than Earth's moon.</li><br>
+            <li>Its surface is composed of nitrogen ice, with methane and water ice.</li><br>
+            <li>Pluto has a thin atmosphere containing nitrogen, methane, and carbon monoxide.</li><br>
+            <li>It has five known moons, the largest being Charon.</li><br>
+        </ul>
+</p>
+      </div>
+        
+      <div class= "justice" id="justice">
+      <h2> #JUSTICEFORPLUTO</h2>
+      </div>
+
+      <script>
+    
+    $(document).ready(function(){
+        $("#sidebar").hide();
+        $("#justice").hide();
+        function mercuryAni(){ 
+        $("#header").html("<h3>Planet Facts</h3>");
+
+        $("#page-header").html("<h1>Mercury</h1>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#mercury-info").show();
+        $("#mercury-list").show();
+        $(".mercury-big").fadeToggle(400);
+        };
+    function venusAni(){ 
+        $("#header").html("<h3>Planet Facts </h3>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#venus-info").show();
+        $("#venus-list").show();
+        $(".venus-big").fadeToggle(400);
+        };
+        
+    function earthAni(){ 
+        $("#page-header").html("<h1>Earth</h1>");
+        $("#header").html("<h3>Planet Facts</h3>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#earth-info").show();
+        $("#earth-list").show();
+        $(".earth-big").fadeToggle(400);
+        };
+    function marsAni(){ 
+        $("#page-header").html("<h1>Mars</h1>");
+        $("#header").html("<h3>Planet Facts</h3>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#mars-info").show();
+        $("#mars-list").show();
+        $(".mars-big").fadeToggle(400);
+        };
+    function jupiterAni(){ 
+        $("#page-header").html("<h1>Jupiter</h1>");
+        $("#header").html("<h3>Planet Facts</h3>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#jupiter-info").show();
+        $("#jupiter-list").show();
+        $(".jupiter-big").fadeToggle(400);
+        };
+    function saturnAni(){ 
+        $("#page-header").html("<h1>Saturn</h1>");
+        $("#header").html("<h3>Planet Facts</h3>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#saturn-info").show();
+        $("#saturn-list").show();
+        $(".saturn-big").fadeToggle(400);
+        };
+    function uranusAni(){ 
+        $("#page-header").html("<h1>Uranus</h1>");
+        $("#header").html("<h3>Planet Facts</h3>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#uranus-info").show();
+        $("#uranus-list").show();
+        $(".uranus-big").fadeToggle(400);
+        };
+    function neptuneAni(){ 
+        $("#page-header").html("<h1>Neptune</h1>");
+        $("#header").html("<h3>Planet Facts</h3>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#neptune-info").show();
+        $("#neptune-list").show();
+        $(".neptune-big").fadeToggle(400);
+        };
+    function plutoAni(){ 
+        $("#header").html("<h3>Dwarf Planet Facts</h3>");
+        $("#page-header").html("<h1>Pluto</h1>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#sidebar").show();
+        $("#pluto-info").show();
+        $("#pluto-list").show();
+        $("#justice").fadeToggle(400);
+        $(".pluto-big").fadeToggle(400);
+
+        };
+     function showSystem(){ 
+        $("#page-header").html("<h1>Solar System</h1>");
+        $(".centered > div").hide();
+        $("#sidebar").hide();
+        $("#justice").hide();
+        $(".orbit-center > div").toggle(400);
+     }
+    $('#btn_1').click( mercuryAni );
+    $('#btn_2').click( venusAni );
+    $('#btn_3').click( earthAni );
+    $('#btn_4').click( marsAni );
+    $('#btn_5').click( jupiterAni );
+    $('#btn_6').click( saturnAni );
+    $('#btn_7').click( uranusAni );
+    $('#btn_8').click( neptuneAni );
+    $('#btn_9').click( plutoAni );
+    $('#btn_10').click( showSystem );
+    $('#btn_11').click(function(){
+  location.href = 'index.html';
+});
+	
+});
+                </script>
+</body>
+
+</html>

@@ -12,7 +12,9 @@
   <!-- Font Awesome 5 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- <link rel="stylesheet" href="/Users/sajjadmac/Desktop/Spring 2024/Web App Development/VS Code/ProPoint Project/Style3.css"> -->
-
+  <meta http-equiv='cache-control' content='no-cache'> 
+  <meta http-equiv='expires' content='0'> 
+  <meta http-equiv='pragma' content='no-cache'>
 
 <!-- ALL CODE ON THIS PAGE WAS WRITTEN, REVIEWED, AND EDITED BY SAJJAD ALLOO :) -->
 
@@ -327,7 +329,8 @@ img{
 .jupiter-big,
 .uranus-big,
 .neptune-big,
-.pluto-big {
+.pluto-big, 
+.sun-big{
     top: 50%;
     right: 50% ;
     translate: (-50%, -50%);
@@ -421,6 +424,7 @@ img{
         transform: rotate(360deg);
     }
 }
+
 @keyframes orbitVenus {
     to {
         transform: rotate(-360deg);
@@ -441,6 +445,34 @@ img{
     z-index: 2;  
 }
 
+#alien{
+    position: absolute;
+    right: 100px;
+    top: 480px;
+    height: 50px;
+    width: 50px;
+    z-index: -1;
+    animation: alien 2s ease-in-out infinite;
+    animation-duration: 10s;
+    animation-delay: 5s;
+}
+
+@keyframes alien {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-15px, -10px);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+
 </style>
 </head>
 <body>
@@ -448,6 +480,7 @@ img{
         <h1>Click on the buttons to learn more!</h1>
     </div> 
     <div class="button-container">
+        <input type="button" class="btn btn-primary" id="btn_0" value="Sun">  
         <input type="button" class="btn btn-primary" id="btn_1" value="Mercury">  
         <input type="button" class="btn btn-primary" id="btn_2" value="Venus">  
         <input type="button" class="btn btn-primary" id="btn_3" value="Earth"> 
@@ -488,7 +521,14 @@ img{
     <img src="https://raw.githubusercontent.com/salloo1/Pro/main/meteorite.svg" alt="meteorite3" style="width: 30px; height: 30px;">
 </div>	
 
+<div class="alien" id= "alien" > 
+    <img src="https://raw.githubusercontent.com/salloo1/Pro/main/alien1.svg" alt="alien">
+</div>
+
     <div class="centered">
+        <div class="sun-big">
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/sun.svg" alt="Sun">
+        </div>
         <div class="mercury-big">
             <img src="https://raw.githubusercontent.com/salloo1/Pro/main/mercury.svg" alt="mercury">
         </div>
@@ -524,7 +564,15 @@ img{
     <div class="sidebar" id="sidebar">
         <h3 id="header">Planet Facts</h3>
         <p class="sun-info" id = "sun-info">
-            <i class="fas fa-globe"></i> Mercury: 1st planet from the sun, average distance from sun is 36 million miles
+            <img src="https://raw.githubusercontent.com/salloo1/Pro/main/sun.svg" alt="Mercury" style="width: 40px; height: 40px;">
+            <ul id="sun-list">
+                <li>The Sun is a star at the center of out solar system.</li> <br>
+                <li>Its radiant energy sustains life on Earth, providing light, heat, and solar radiation.</li> <br>
+                <li>Primarily composed of hydrogen (about 74%) and helium (about 24%) with trace elements.</li> <br>
+                <li>The Sun is approximately 4.6 billion years old.</li><br>
+                <li>Nuclear fusion in its core converts hydrogen into helium, releasing immense energy.</li><br>
+                <li>The Sun's diameter is approximately 109 times that of Earth, with a volume over 1 million times Earth's.</li>
+            </ul>
           </p>
         <p class="mercury-info" id = "mercury-info">
             <img src="https://raw.githubusercontent.com/salloo1/Pro/main/mercury.svg" alt="Mercury" style="width: 40px; height: 40px;">
@@ -636,9 +684,22 @@ img{
     $(document).ready(function(){
         $("#sidebar").hide();
         $("#justice").hide();
+
+        function sunAni(){ 
+        $("#header").html("<h3>Planet Facts</h3>");
+        $("#page-header").html("<h1>Sun</h1>");
+        $(".centered > div").hide();
+        $(".orbit-center > div").hide();
+        $("#sidebar").children().not("#header").hide();
+        $("#justice").hide();
+        $("#sidebar").show();
+        $("#sun-info").show();
+        $("#sun-list").show();
+        $(".sun-big").fadeToggle(400);
+        };
+
         function mercuryAni(){ 
         $("#header").html("<h3>Planet Facts</h3>");
-
         $("#page-header").html("<h1>Mercury</h1>");
         $(".centered > div").hide();
         $(".orbit-center > div").hide();
@@ -751,8 +812,10 @@ img{
         $(".centered > div").hide();
         $("#sidebar").hide();
         $("#justice").hide();
-        $(".orbit-center > div").toggle(400);
+        $(".orbit-center > div").fadeToggle(400);
      }
+
+     $('#btn_0').click( sunAni );
     $('#btn_1').click( mercuryAni );
     $('#btn_2').click( venusAni );
     $('#btn_3').click( earthAni );
@@ -764,7 +827,7 @@ img{
     $('#btn_9').click( plutoAni );
     $('#btn_10').click( showSystem );
     $('#btn_11').click(function(){
-  location.href = 'index.html';
+  location.href = 'ProPoint.html';
 });
 	
 });

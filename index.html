@@ -389,7 +389,8 @@ units = "lb"
 //.toFixed(3) was used here instead of earlier when calculating massDisplayed because of rounding errors I encountered. Same errors occured when using .toFixed(2)
 if(totalCountYear == 1){
 $("#textDisplayed2").append("In the year " + year + ": <ul><li> Only " + totalCountYear + 
-	" meteorite was observed to have hit Earth.</li><li> Its name was " + soloName + ".</li><li>It weighed " +  massDisplayed.toFixed(3) + units +".</li> </ul> <div> Hypothesis: As I examine meteorite landing data, I propose that there is a correlation between the increase in recorded meteorite events and the advancement of technology. Over time, the number of documented meteorite landings will likely rise due to the enhancement of meteorite detection techniques and technological capabilities. </div>")
+	" meteorite was observed to have hit Earth.</li><li> Its name was " + soloName + ".</li><li>It weighed " 
+    +  massDisplayed.toFixed(3) + units +".</li> </ul> <div>Hypothesis: As I examine meteorite landing data, I hypothesize that as time (in years) increases, the number of recorded meteorite events also increases. Over time, the number of documented meteorite landings will likely rise due to the enhancement of meteorite detection techniques and technological capabilities. </div>")
 }
  else if(totalCountYear == 0 &&  $("#textInput1").val() != "" && $("#textDisplayed2").html() !="Bad data. Enter a year between 1490 and 2013."){
 	$("#textDisplayed2").append("According to our data, no meteorites hit Earth this year.")
@@ -397,7 +398,7 @@ $("#textDisplayed2").append("In the year " + year + ": <ul><li> Only " + totalCo
 else if( parseInt($("#textInput1").val()) >= 1 && $("#textDisplayed2").html() !="Bad data. Enter a year between 1490 and 2013." ){
 	$("#textDisplayed2").append("In the year " + year + ": <ul><li>" + totalCountYear +
 		 " meteorites hit Earth.</li><li> Each had an average mass of "+ massDisplayed.toFixed(3) + units +".</li><li> The standard deviation of mass is " + standardDeviationYear + units + 
-			". </li> <li> The smallest meteor weighed " + minYear + units +"</li> <li> The heaviest meteor weighed " + maxYear + units +"</li> </ul> <div> Hypothesis: As I examine meteorite landing data, I propose that there is a correlation between the increase in recorded meteorite events and the advancement of technology. Over time, the number of documented meteorite landings will likely rise due to the enhancement of meteorite detection techniques and technological capabilities. </div>")
+			". </li> <li> The smallest meteor weighed " + minYear + units +". </li> <li> The heaviest meteor weighed " + maxYear + units +". </li> </ul> <div>Hypothesis: As I examine meteorite landing data, I hypothesize that as time (in years) increases, the number of recorded meteorite events also increases. Over time, the number of documented meteorite landings will likely rise due to the enhancement of meteorite detection techniques and technological capabilities. </div>")
 	
 }
 })
